@@ -399,7 +399,6 @@ gboolean on_buttonrelease (GtkWidget *win,
   if(devdata->cur_context)
     width = devdata->cur_context->arrowsize * devdata->cur_context->width / 2;
    
-
   if ((ev->x != devdata->lastx) ||
       (ev->y != devdata->lasty))
     on_motion(win, (GdkEventMotion *) ev, user_data);
@@ -414,8 +413,12 @@ gboolean on_buttonrelease (GtkWidget *win,
 
   coord_list_free (data, ev->device);
 
+  // Clear the screen when the mouse button is released
+  clear_screen(data);
+
   return TRUE;
 }
+
 
 /* Remote control */
 void on_mainapp_selection_get (GtkWidget          *widget,
